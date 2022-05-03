@@ -10,7 +10,6 @@ import {
   Platform,
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
-// import Geocoder from 'react-native-geocoder';
 import Axios from 'axios';
 
 import {
@@ -42,18 +41,9 @@ interface IStateWeatherDetails {
 }
 
 interface IStateAddress {
-  adminArea: string;
   country: string;
-  countryCode: string;
-  feature: string;
-  formattedAddress: string;
-  locality: string;
-  position: {lng: number; lat: number};
-  postalCode: string;
-  streetName: string;
-  streetNumber: string;
-  subAdminArea: string;
-  subLocality: string;
+  name: string;
+  state: string;
 }
 
 const App = () => {
@@ -65,21 +55,18 @@ const App = () => {
   const [address, setAddress] = useState<IStateAddress | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  // const getAddressByLocation = async (latitude: number, longitude: number) => {
-  //   await Geocoder.fallbackToGoogle('AIzaSyCIkBO7nsOI7PuMY52Q-mVa2jJt01qvCx8');
-
-  //   try {
-  //     const res = await Geocoder.geocodePosition({
-  //       lat: latitude,
-  //       lng: longitude,
-  //     });
-  //     setAddress(res[0]);
-  //   } catch (e) {
-  //     Alert.alert('Error', 'Error ao pegar o endereço.');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+  const getAddressByLocation = async (latitude: number, longitude: number) => {
+    try {
+      const {data} = await Axios.get(
+        `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=ecb9f6a03014b6843e398f76dbe11ec9`,
+      );
+      setAddress(data[0]);
+    } catch (e) {
+      Alert.alert('Error', 'Error ao pegar o endereço.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getWeatherByLocation = async (latitude: number, longitude: number) => {
     try {
@@ -106,10 +93,10 @@ const App = () => {
 
     Geolocation.getCurrentPosition(
       async ({coords}) => {
-        // getAddressByLocation(coords.latitude, coords.longitude);
+        getAddressByLocation(coords.latitude, coords.longitude);
         getWeatherByLocation(coords.latitude, coords.longitude);
       },
-      error => Alert.alert('Error', JSON.stringify(error)),
+      error => Alert.alert('Error', JSON.stringify(error.message)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
     );
   };

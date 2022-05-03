@@ -14,7 +14,9 @@ interface IWeatherInfo {
     }>;
   };
   address?: {
-    formattedAddress?: string;
+    country: string;
+    name: string;
+    state: string;
   };
 }
 
@@ -27,12 +29,11 @@ const WeatherInfo = ({currentWeatherDetails, address}: IWeatherInfo) => {
   const {icon, main, description} = details;
 
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
-  console.log(iconUrl, 'iconUrl');
 
   return (
     <View style={styles.weatherInfo}>
       <Text style={{width: 300, textAlign: 'center'}}>
-        {address?.formattedAddress}
+        {address?.name}, {address?.state} - {address?.country}
       </Text>
 
       <Image style={styles.weatherIcon} source={{uri: iconUrl}} />
