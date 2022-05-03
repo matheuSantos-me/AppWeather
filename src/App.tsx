@@ -58,10 +58,11 @@ const App = () => {
   const getAddressByLocation = async (latitude: number, longitude: number) => {
     try {
       const {data} = await Axios.get(
-        `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=ecb9f6a03014b6843e398f76dbe11ec9`,
+        `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=5&appid=ecb9f6a03014b6843e398f76dbe11ec9`,
       );
       setAddress(data[0]);
     } catch (e) {
+      console.log(e, 'error');
       Alert.alert('Error', 'Error ao pegar o endereço.');
     } finally {
       setLoading(false);
@@ -93,8 +94,8 @@ const App = () => {
 
     Geolocation.getCurrentPosition(
       async ({coords}) => {
-        getAddressByLocation(coords.latitude, coords.longitude);
-        getWeatherByLocation(coords.latitude, coords.longitude);
+        await getAddressByLocation(coords.latitude, coords.longitude);
+        await getWeatherByLocation(coords.latitude, coords.longitude);
       },
       error => Alert.alert('Error', JSON.stringify(error.message)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
