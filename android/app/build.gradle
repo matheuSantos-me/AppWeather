@@ -289,8 +289,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-    compile project(':react-native-geocoder')
 }
 
 if (isNewArchitectureEnabled()) {

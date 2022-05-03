@@ -23,8 +23,6 @@ target 'AppWeather' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
-  pod 'react-native-geocoder', :path => '../node_modules/react-native-geocoder'
-
   target 'AppWeatherTests' do
     inherit! :complete
     # Pods for testing

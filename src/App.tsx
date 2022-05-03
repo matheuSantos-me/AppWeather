@@ -10,7 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
-import Geocoder from 'react-native-geocoder';
+// import Geocoder from 'react-native-geocoder';
 import Config from 'react-native-config';
 import Axios from 'axios';
 
@@ -66,21 +66,21 @@ const App = () => {
   const [address, setAddress] = useState<IStateAddress | undefined>();
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getAddressByLocation = async (latitude: number, longitude: number) => {
-    await Geocoder.fallbackToGoogle(Config.GOOGLE_KEY_API);
+  // const getAddressByLocation = async (latitude: number, longitude: number) => {
+  //   await Geocoder.fallbackToGoogle(Config.GOOGLE_KEY_API);
 
-    try {
-      const res = await Geocoder.geocodePosition({
-        lat: latitude,
-        lng: longitude,
-      });
-      setAddress(res[0]);
-    } catch (e) {
-      Alert.alert('Error', 'Error ao pegar o endereço.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  //   try {
+  //     const res = await Geocoder.geocodePosition({
+  //       lat: latitude,
+  //       lng: longitude,
+  //     });
+  //     setAddress(res[0]);
+  //   } catch (e) {
+  //     Alert.alert('Error', 'Error ao pegar o endereço.');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const getWeatherByLocation = async (latitude: number, longitude: number) => {
     try {
@@ -107,7 +107,7 @@ const App = () => {
 
     Geolocation.getCurrentPosition(
       async ({coords}) => {
-        getAddressByLocation(coords.latitude, coords.longitude);
+        // getAddressByLocation(coords.latitude, coords.longitude);
         getWeatherByLocation(coords.latitude, coords.longitude);
       },
       error => Alert.alert('Error', JSON.stringify(error)),
