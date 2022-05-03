@@ -62,7 +62,6 @@ const App = () => {
       );
       setAddress(data[0]);
     } catch (e) {
-      console.log(e, 'error');
       Alert.alert('Error', 'Error ao pegar o endereço.');
     } finally {
       setLoading(false);
