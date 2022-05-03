@@ -27,6 +27,7 @@ const WeatherInfo = ({currentWeatherDetails, address}: IWeatherInfo) => {
   const {icon, main, description} = details;
 
   const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
+  console.log(iconUrl, 'iconUrl');
 
   return (
     <View style={styles.weatherInfo}>

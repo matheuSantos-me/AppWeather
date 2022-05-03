@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 // import Geocoder from 'react-native-geocoder';
-import Config from 'react-native-config';
 import Axios from 'axios';
 
 import {
@@ -67,7 +66,7 @@ const App = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   // const getAddressByLocation = async (latitude: number, longitude: number) => {
-  //   await Geocoder.fallbackToGoogle(Config.GOOGLE_KEY_API);
+  //   await Geocoder.fallbackToGoogle('AIzaSyCIkBO7nsOI7PuMY52Q-mVa2jJt01qvCx8');
 
   //   try {
   //     const res = await Geocoder.geocodePosition({
@@ -85,7 +84,7 @@ const App = () => {
   const getWeatherByLocation = async (latitude: number, longitude: number) => {
     try {
       const {data} = await Axios.get(
-        `${Config.BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${Config.WEATHER_API_KEY}`,
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=ecb9f6a03014b6843e398f76dbe11ec9`,
       );
       setCurrentWeatherDetails({
         main: data.main,
