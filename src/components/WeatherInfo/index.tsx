@@ -5,32 +5,42 @@ import {colors} from '../../utils/colors';
 const {PRIMARY_COLOR, SECONDARY_COLOR} = colors;
 
 interface IWeatherInfo {
-  currentWeather: any;
-  currentWeatherDetails: any;
+  currentWeatherDetails: {
+    main: {temp: number};
+    weather: Array<{
+      icon: string;
+      main: string;
+      description: string;
+    }>;
+  };
+  address?: {
+    formattedAddress?: string;
+  };
 }
 
-const WeatherInfo = ({currentWeather, currentWeatherDetails}: IWeatherInfo) => {
-  // const {
-  //   main: {temp},
-  //   weather: [details],
-  //   name,
-  // } = currentWeatherDetails;
+const WeatherInfo = ({currentWeatherDetails, address}: IWeatherInfo) => {
+  const {
+    main: {temp},
+    weather: [details],
+  } = currentWeatherDetails;
 
-  // const {icon, main, description} = details;
+  const {icon, main, description} = details;
 
-  // const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
   return (
     <View style={styles.weatherInfo}>
-      {/* <Text>{name}</Text> */}
+      <Text style={{width: 300, textAlign: 'center'}}>
+        {address?.formattedAddress}
+      </Text>
 
-      {/* <Image style={styles.weatherIcon} source={{uri: iconUrl}} /> */}
+      <Image style={styles.weatherIcon} source={{uri: iconUrl}} />
 
-      {/* <Text style={styles.textPrimary}>{temp}°</Text> */}
+      <Text style={styles.textPrimary}>{temp}°</Text>
 
-      {/* <Text style={styles.weatherDescription}>{description}</Text> */}
+      <Text style={styles.weatherDescription}>{description}</Text>
 
-      {/* <Text style={styles.textSecondary}>{main}</Text> */}
+      <Text style={styles.textSecondary}>{main}</Text>
     </View>
   );
 };

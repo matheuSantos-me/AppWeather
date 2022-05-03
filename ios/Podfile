@@ -19,6 +19,12 @@ target 'AppWeather' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
+  pod 'react-native-geocoder', :path => '../node_modules/react-native-geocoder'
+
   target 'AppWeatherTests' do
     inherit! :complete
     # Pods for testing
