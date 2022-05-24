@@ -25,6 +25,6 @@ Some snapshots of the application with different unit systems.
 
 
 <html>
-<a href="url"><img src="https://github.com/matheuSantos-me/AppWeather/blob/master/src/printscreen/home-android.png" align="left" height="500" width="250" ></a>
-<a href="url"><img src="https://github.com/matheuSantos-me/AppWeather/blob/master/src/printscreen/home-ios.png" align="left" height="500" width="250" ></a>  
+<a href="url"><img src="https://github.com/matheuSantos-me/AppWeather/blob/master/src/assets/printscreen/home-android.png" align="left" height="500" width="250" ></a>
+<a href="url"><img src="https://github.com/matheuSantos-me/AppWeather/blob/master/src/assets/printscreen/home-ios.png" align="left" height="500" width="250" ></a>  
 </html>
